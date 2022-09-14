@@ -1,0 +1,41 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+test-results/
+public/config.json
+# common files
+.DS_Store
+.envrc
+_tmp
+.tmp
+
+# app folders
+dist/
+build/
+coverage/
+
+.ci/
+ci.json
+
+# local config
+
+# nodejs
+node_modules/
+.npm
+*.tgz
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintcache
+
+# terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+
+# serverless
+.serverless/
