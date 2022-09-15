@@ -15,6 +15,12 @@ const {
         name: {type: GraphQLString},
         description: {type: GraphQLString},
         status: {type: GraphQLString},
+        client: {
+            type:ClientType,
+            resolve(parent, args) {
+                return clients.find(client => client.id === parent.clientId);   //where the client matches the clientId of the project (client is a child of the project)
+            }
+        }
     })
 });
 
