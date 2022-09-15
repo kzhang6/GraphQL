@@ -13,8 +13,8 @@ const ProjectSchema = new mongoose.Schema ({
     },
     clientId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Client', //reference with the objectId created in collection
+        ref: 'Client', //reference with the objectId created automatically in collection
     }
 })
 
-module.exports = mongoose.model('Client', ClientSchema);
+module.exports = mongoose.model('Project', ProjectSchema);

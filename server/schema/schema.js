@@ -1,5 +1,4 @@
-const { projects, clients } = require('../sampleData.js') //get the arrays from the sample data file
-
+// bring in mongoose models to query database
 const Project = require('../models/Project');
 const Client = require('../models/Client');
 
@@ -21,7 +20,7 @@ const {
         client: {
             type:ClientType,
             resolve(parent, args) {
-                return clients.find(client => client.id === parent.clientId);   //where the client matches the clientId of the project (client is a child of the project)
+                return Client.findById(parent.clientId);    //project model has a client id field
             }
         }
     })
@@ -44,27 +43,27 @@ const RootQuery = new GraphQLObjectType({
         projects: {
             type: new GraphQLList(ProjectType),
             resolve(parent, args) {
-                return projects;
+                return Project.find(); //get all projects
             }
         },
         project: {
             type: ProjectType,
             args: { id: { type: GraphQLID }},
             resolve(parent, args) {
-                return projects.find(project => project.id === args.id);
+                return Project.findById(args.id);
             }
         },
         clients: {  //query to get all clients
             type: new GraphQLList(ClientType),   //list of ClientType
             resolve(parent, args) {
-                return clients; //returning the array
+                return Clients.find(); //returning the array
             }
         },
         client: {   // client field to fetch the client
             type: ClientType, //declared above
             args: { id: { type: GraphQLID }},   //id to get a single client
             resolve(parent, args) { //return value
-                return clients.find(client => client.id === args.id);
+                return Client.findById(args.id);
             }
         }
     }
