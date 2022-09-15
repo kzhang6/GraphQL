@@ -1,11 +1,17 @@
 const express = require('express');
+const colors = require('colors');
 require('dotenv').config(); //include .env file
 const { graphqlHTTP } = require('express-graphql');
-const schema = require('./schema/schema')
+const schema = require('./schema/schema');
+const connectDB = require('./config/db');
 const port = process.env.PORT || 5000;
 const app = express();
 
-app.use('/graphql', graphqlHTTP({
+connectDB();
+
+app.use(
+    '/graphql',
+    graphqlHTTP({
     schema, //schema: schema (shorthand because it's the same name as the file name)
     graphiql: process.env.NODE_ENV === 'development' // using the graphiql tool when in specified as 'development' mode in .env
 }))
