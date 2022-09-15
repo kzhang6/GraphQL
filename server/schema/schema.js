@@ -1,5 +1,8 @@
 const { projects, clients } = require('../sampleData.js') //get the arrays from the sample data file
 
+const Project = require('../models/Project');
+const Client = require('../models/Client');
+
 const {
     GraphQLObjectType,
     GraphQLID,
